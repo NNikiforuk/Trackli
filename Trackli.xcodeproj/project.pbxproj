@@ -57,6 +57,7 @@
 		F516CA042DA6B1DA00698F9E /* CustomWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CustomWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		F516CA062DA6B1DA00698F9E /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		F516CA082DA6B1DA00698F9E /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		F516CA1F2DA6BA6A00698F9E /* CustomWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CustomWidgetExtension.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -67,11 +68,22 @@
 			);
 			target = F516CA032DA6B1DA00698F9E /* CustomWidgetExtension */;
 		};
+		F516CA1D2DA6B8BD00698F9E /* Exceptions for "Trackli" folder in "CustomWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Persistence.swift,
+				Trackli.xcdatamodeld,
+			);
+			target = F516CA032DA6B1DA00698F9E /* CustomWidgetExtension */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		F516C9752DA6A38B00698F9E /* Trackli */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				F516CA1D2DA6B8BD00698F9E /* Exceptions for "Trackli" folder in "CustomWidgetExtension" target */,
+			);
 			path = Trackli;
 			sourceTree = "<group>";
 		};
@@ -132,6 +144,7 @@
 		F516C96A2DA6A38B00698F9E = {
 			isa = PBXGroup;
 			children = (
+				F516CA1F2DA6BA6A00698F9E /* CustomWidgetExtension.entitlements */,
 				F516C9752DA6A38B00698F9E /* Trackli */,
 				F516C98B2DA6A38D00698F9E /* TrackliTests */,
 				F516C9952DA6A38D00698F9E /* TrackliUITests */,
@@ -509,6 +522,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Trackli/Trackli.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Trackli/Preview Content\"";
@@ -538,6 +552,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Trackli/Trackli.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Trackli/Preview Content\"";
@@ -639,6 +654,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = CustomWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = HCL5YVAR64;
@@ -666,6 +682,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = CustomWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = HCL5YVAR64;

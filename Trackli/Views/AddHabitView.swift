@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import WidgetKit
 
 struct AddHabitView: View {
     @Environment(\.managedObjectContext) var viewContext
@@ -219,6 +220,7 @@ struct AddHabitView: View {
     func save() {
         do {
             try viewContext.save()
+            WidgetCenter.shared.reloadAllTimelines()
             dismiss()
             
         } catch {

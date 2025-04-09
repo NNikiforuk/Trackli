@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CoreData
+import WidgetKit
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
@@ -108,6 +109,7 @@ struct ContentView: View {
                 NSManagedObjectContext.mergeChanges(fromRemoteContextSave: changes, into: [viewContext])
             }
             try viewContext.save()
+            WidgetCenter.shared.reloadAllTimelines()
         } catch {
             print(error)
         }

@@ -10,50 +10,51 @@ import SwiftUI
 
 struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), emoji: "😀")
+        let itemCount = (try? getData().count) ?? 0
+        return SimpleEntry(date: Date(), itemCount: itemCount)
     }
 
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date(), emoji: "😀")
-        completion(entry)
+        do {
+            let items = try getData()
+            let entry = SimpleEntry(date: Date(), itemCount: items.count)
+            
+            completion(entry)
+        } catch {
+            print(error)
+        }
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        var entries: [SimpleEntry] = []
-
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-        let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate, emoji: "😀")
-            entries.append(entry)
+        do {
+            let items = try getData()
+            let entry = SimpleEntry(date: Date(), itemCount: items.count)
+            let timeline = Timeline(entries: [entry], policy: .atEnd)
+            completion(timeline)
+        }catch {
+            print(error)
         }
-
-        let timeline = Timeline(entries: entries, policy: .atEnd)
-        completion(timeline)
     }
-
-//    func relevances() async -> WidgetRelevances<Void> {
-//        // Generate a list containing the contexts this widget is relevant in.
-//    }
+    
+    private func getData() throws -> [Habit] {
+        let context = PersistenceController.shared.container.viewContext
+        let request = Habit.fetchRequest()
+        let result = try context.fetch(request)
+        
+        return result
+    }
 }
 
 struct SimpleEntry: TimelineEntry {
     let date: Date
-    let emoji: String
+    let itemCount: Int
 }
 
 struct CustomWidgetEntryView : View {
     var entry: Provider.Entry
 
     var body: some View {
-        VStack {
-            Text("Time:")
-            Text(entry.date, style: .time)
-
-            Text("Emoji:")
-            Text(entry.emoji)
-        }
+        Text(entry.itemCount, format: .number)
     }
 }
 
@@ -79,6 +80,5 @@ struct CustomWidget: Widget {
 #Preview(as: .systemSmall) {
     CustomWidget()
 } timeline: {
-    SimpleEntry(date: .now, emoji: "😀")
-    SimpleEntry(date: .now, emoji: "🤩")
+    SimpleEntry(date: .now, itemCount: 4)
 }
