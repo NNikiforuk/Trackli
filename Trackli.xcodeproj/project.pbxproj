@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		F516CA072DA6B1DA00698F9E /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F516CA062DA6B1DA00698F9E /* WidgetKit.framework */; };
+		F516CA092DA6B1DA00698F9E /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F516CA082DA6B1DA00698F9E /* SwiftUI.framework */; };
+		F516CA162DA6B1DC00698F9E /* CustomWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = F516CA042DA6B1DA00698F9E /* CustomWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		F516C9892DA6A38D00698F9E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -21,13 +27,47 @@
 			remoteGlobalIDString = F516C9722DA6A38B00698F9E;
 			remoteInfo = Trackli;
 		};
+		F516CA142DA6B1DC00698F9E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F516C96B2DA6A38B00698F9E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F516CA032DA6B1DA00698F9E;
+			remoteInfo = CustomWidgetExtension;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F516CA1B2DA6B1DC00698F9E /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				F516CA162DA6B1DC00698F9E /* CustomWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		F516C9732DA6A38B00698F9E /* Trackli.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trackli.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F516C9882DA6A38D00698F9E /* TrackliTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrackliTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F516C9922DA6A38D00698F9E /* TrackliUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrackliUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F516CA042DA6B1DA00698F9E /* CustomWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CustomWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		F516CA062DA6B1DA00698F9E /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		F516CA082DA6B1DA00698F9E /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		F516CA172DA6B1DC00698F9E /* Exceptions for "CustomWidget" folder in "CustomWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = F516CA032DA6B1DA00698F9E /* CustomWidgetExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		F516C9752DA6A38B00698F9E /* Trackli */ = {
@@ -43,6 +83,14 @@
 		F516C9952DA6A38D00698F9E /* TrackliUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = TrackliUITests;
+			sourceTree = "<group>";
+		};
+		F516CA0A2DA6B1DA00698F9E /* CustomWidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				F516CA172DA6B1DC00698F9E /* Exceptions for "CustomWidget" folder in "CustomWidgetExtension" target */,
+			);
+			path = CustomWidget;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -69,6 +117,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F516CA012DA6B1DA00698F9E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F516CA092DA6B1DA00698F9E /* SwiftUI.framework in Frameworks */,
+				F516CA072DA6B1DA00698F9E /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -78,6 +135,8 @@
 				F516C9752DA6A38B00698F9E /* Trackli */,
 				F516C98B2DA6A38D00698F9E /* TrackliTests */,
 				F516C9952DA6A38D00698F9E /* TrackliUITests */,
+				F516CA0A2DA6B1DA00698F9E /* CustomWidget */,
+				F516CA052DA6B1DA00698F9E /* Frameworks */,
 				F516C9742DA6A38B00698F9E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -88,8 +147,18 @@
 				F516C9732DA6A38B00698F9E /* Trackli.app */,
 				F516C9882DA6A38D00698F9E /* TrackliTests.xctest */,
 				F516C9922DA6A38D00698F9E /* TrackliUITests.xctest */,
+				F516CA042DA6B1DA00698F9E /* CustomWidgetExtension.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		F516CA052DA6B1DA00698F9E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F516CA062DA6B1DA00698F9E /* WidgetKit.framework */,
+				F516CA082DA6B1DA00698F9E /* SwiftUI.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -102,10 +171,12 @@
 				F516C96F2DA6A38B00698F9E /* Sources */,
 				F516C9702DA6A38B00698F9E /* Frameworks */,
 				F516C9712DA6A38B00698F9E /* Resources */,
+				F516CA1B2DA6B1DC00698F9E /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				F516CA152DA6B1DC00698F9E /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				F516C9752DA6A38B00698F9E /* Trackli */,
@@ -163,6 +234,28 @@
 			productReference = F516C9922DA6A38D00698F9E /* TrackliUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		F516CA032DA6B1DA00698F9E /* CustomWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F516CA182DA6B1DC00698F9E /* Build configuration list for PBXNativeTarget "CustomWidgetExtension" */;
+			buildPhases = (
+				F516CA002DA6B1DA00698F9E /* Sources */,
+				F516CA012DA6B1DA00698F9E /* Frameworks */,
+				F516CA022DA6B1DA00698F9E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				F516CA0A2DA6B1DA00698F9E /* CustomWidget */,
+			);
+			name = CustomWidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = CustomWidgetExtension;
+			productReference = F516CA042DA6B1DA00698F9E /* CustomWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -184,6 +277,9 @@
 						CreatedOnToolsVersion = 16.2;
 						TestTargetID = F516C9722DA6A38B00698F9E;
 					};
+					F516CA032DA6B1DA00698F9E = {
+						CreatedOnToolsVersion = 16.2;
+					};
 				};
 			};
 			buildConfigurationList = F516C96E2DA6A38B00698F9E /* Build configuration list for PBXProject "Trackli" */;
@@ -203,6 +299,7 @@
 				F516C9722DA6A38B00698F9E /* Trackli */,
 				F516C9872DA6A38D00698F9E /* TrackliTests */,
 				F516C9912DA6A38D00698F9E /* TrackliUITests */,
+				F516CA032DA6B1DA00698F9E /* CustomWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -223,6 +320,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		F516C9902DA6A38D00698F9E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F516CA022DA6B1DA00698F9E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -253,6 +357,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F516CA002DA6B1DA00698F9E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -265,6 +376,11 @@
 			isa = PBXTargetDependency;
 			target = F516C9722DA6A38B00698F9E /* Trackli */;
 			targetProxy = F516C9932DA6A38D00698F9E /* PBXContainerItemProxy */;
+		};
+		F516CA152DA6B1DC00698F9E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F516CA032DA6B1DA00698F9E /* CustomWidgetExtension */;
+			targetProxy = F516CA142DA6B1DC00698F9E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -402,8 +518,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -432,8 +547,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -520,6 +634,60 @@
 			};
 			name = Release;
 		};
+		F516CA192DA6B1DC00698F9E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HCL5YVAR64;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CustomWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = CustomWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = name.natalianikiforuk.Trackli.CustomWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F516CA1A2DA6B1DC00698F9E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HCL5YVAR64;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CustomWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = CustomWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = name.natalianikiforuk.Trackli.CustomWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -555,6 +723,15 @@
 			buildConfigurations = (
 				F516C9A32DA6A38D00698F9E /* Debug */,
 				F516C9A42DA6A38D00698F9E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F516CA182DA6B1DC00698F9E /* Build configuration list for PBXNativeTarget "CustomWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F516CA192DA6B1DC00698F9E /* Debug */,
+				F516CA1A2DA6B1DC00698F9E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
