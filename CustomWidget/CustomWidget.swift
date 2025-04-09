@@ -8,6 +8,11 @@
 import WidgetKit
 import SwiftUI
 
+struct SimpleEntry: TimelineEntry {
+    let date: Date
+    let itemCount: Int
+}
+
 struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
         let itemCount = (try? getData().count) ?? 0
@@ -43,11 +48,6 @@ struct Provider: TimelineProvider {
         
         return result
     }
-}
-
-struct SimpleEntry: TimelineEntry {
-    let date: Date
-    let itemCount: Int
 }
 
 struct CustomWidgetEntryView : View {
