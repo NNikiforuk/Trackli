@@ -11,8 +11,7 @@ import WidgetKit
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    @Environment(\.colorScheme) private var scheme
-    @AppStorage("userTheme") private var userTheme: Theme = .systemDefault
+    @AppStorage("appearance") private var selectedAppearance: Appearance = .system
     @Namespace private var animation
     
     @FetchRequest(
@@ -26,8 +25,15 @@ struct ContentView: View {
     
     let weeks = -50...50
     
-    var isDarkTheme: Bool {
-        userTheme.rawValue == "Dark"
+    var colorScheme: ColorScheme? {
+        switch selectedAppearance {
+        case .system:
+            return nil
+        case .dark:
+            return .dark
+        case .light:
+            return .light
+        }
     }
     
     var todaysHabits: [Habit] {
@@ -55,7 +61,7 @@ struct ContentView: View {
                 if todaysHabits.isEmpty {
                     noChart
                 } else {
-                    Chart(todaysProgress: todaysProgress, isDarkTheme: isDarkTheme)
+                    Chart(todaysProgress: todaysProgress, colorScheme: colorScheme)
                 }
                 VStack {
                     habitsHeader
@@ -75,7 +81,10 @@ struct ContentView: View {
             .background(.bcg)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
-                    themeSwitcher
+                    NavigationLink(destination: SettingsView()) {
+                        Image(systemName: "gearshape")
+                            .font(.body.bold())
+                    }
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
@@ -88,12 +97,13 @@ struct ContentView: View {
                     }
                 }
             }
+            .foregroundStyle(.accent)
             .alert("Do you want to delete all habits?", isPresented: $showAlert) {
                 Button("Yes", role: .destructive) { deleteAllHabits() }
                 Button("No", role: .cancel) { }
             }
         }
-        .preferredColorScheme(userTheme.colorScheme)
+        .preferredColorScheme(colorScheme)
     }
     
     func deleteAllHabits() {
@@ -140,41 +150,6 @@ struct ContentView: View {
         }
         .padding(.bottom, 20)
         .padding(.horizontal)
-    }
-    
-    var themeSwitcher: some View {
-        HStack(spacing: 0) {
-            ForEach(Theme.selectableCases, id: \.rawValue) { theme in
-                ThemeIcon(theme: theme, isSelected: userTheme == theme)
-            }
-        }
-        .overlay {
-            Capsule()
-                .stroke(.customPrimary)
-        }
-        .animation(.easeInOut(duration: 0.3), value: userTheme)
-    }
-    
-    @ViewBuilder
-    func ThemeIcon(theme: Theme, isSelected: Bool) -> some View {
-        Image(systemName: theme.iconName)
-            .font(.caption)
-            .foregroundStyle(isSelected ? .whiteText : (theme.rawValue == "Dark" ? .customPrimary : .whiteText))
-            .padding(.horizontal, 15)
-            .padding(.vertical, 8)
-            .background {
-                if isSelected {
-                    Capsule()
-                        .fill(.customPrimary)
-                        .matchedGeometryEffect(id: "ACTIVETAB", in: animation)
-                }
-            }
-            .contentShape(Rectangle())
-            .onTapGesture {
-                withAnimation(.easeInOut) {
-                    userTheme = theme
-                }
-            }
     }
     
     var calendar: some View {
@@ -247,24 +222,25 @@ struct Chart: View {
     var percentText: String {
         "\(Int(todaysProgress * 100))%"
     }
-    let isDarkTheme: Bool
+    var colorScheme: ColorScheme?
     
     var body: some View {
         ZStack{
             Circle()
                 .stroke(lineWidth: 20)
-                .opacity(0.1)
+                .opacity(0.3)
                 .foregroundStyle(.accent)
             Text(percentText)
-                .foregroundStyle(isDarkTheme ? .accent : .customPrimary)
+                .foregroundStyle(.chartText)
             Circle()
                 .trim(from: 0.0, to: todaysProgress)
                 .stroke(style: StrokeStyle(lineWidth: 10, lineCap: .round))
-                .foregroundStyle(isDarkTheme ? .accent : .customPrimary)
+                .foregroundStyle(.chartText)
                 .rotationEffect(.degrees(-90))
                 .animation(.easeOut(duration: 0.5), value: todaysProgress)
         }
         .frame(height: 100)
+        .preferredColorScheme(colorScheme)
     }
 }
 

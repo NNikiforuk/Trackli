@@ -22,4 +22,5 @@ struct ColorTheme {
     let whiteText = Color("WhiteText")
     let habitText = Color("HabitTextColor")
     let calendarText = Color("CalendarTextColor")
+    let chartText = Color("ChartTextColor")
 }

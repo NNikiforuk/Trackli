@@ -20,12 +20,12 @@
             landmarkType = "24">
             <Locations>
                <Location
-                  uuid = "EB367714-7359-49EC-8E73-27045FBD6ACA - c6585495e81b3d4b"
+                  uuid = "EB367714-7359-49EC-8E73-27045FBD6ACA - 2a464d668ba6c983"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "one-time initialization function for preview"
-                  moduleName = "CustomWidgetExtension.debug.dylib"
+                  moduleName = "Trackli.debug.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/natalianikiforuk/Desktop/Swift/Trackli/Trackli/Persistence.swift"
                   startingColumnNumber = "9223372036854775807"
@@ -34,12 +34,12 @@
                   endingLineNumber = "14">
                </Location>
                <Location
-                  uuid = "EB367714-7359-49EC-8E73-27045FBD6ACA - 7c4a9fe8b395c9ed"
+                  uuid = "EB367714-7359-49EC-8E73-27045FBD6ACA - 6aa5daf1e1cce403"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; CustomWidgetExtension.PersistenceController in variable initialization expression of static CustomWidgetExtension.PersistenceController.preview : CustomWidgetExtension.PersistenceController"
-                  moduleName = "CustomWidgetExtension.debug.dylib"
+                  symbolName = "closure #1 () -&gt; Trackli.PersistenceController in variable initialization expression of static Trackli.PersistenceController.preview : Trackli.PersistenceController"
+                  moduleName = "Trackli.debug.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/natalianikiforuk/Desktop/Swift/Trackli/Trackli/Persistence.swift"
                   startingColumnNumber = "9223372036854775807"
@@ -48,12 +48,12 @@
                   endingLineNumber = "15">
                </Location>
                <Location
-                  uuid = "EB367714-7359-49EC-8E73-27045FBD6ACA - 848559573afdbcd"
+                  uuid = "EB367714-7359-49EC-8E73-27045FBD6ACA - 9b9425dbf1ae028b"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "CustomWidgetExtension.PersistenceController.preview.unsafeMutableAddressor : CustomWidgetExtension.PersistenceController"
-                  moduleName = "CustomWidgetExtension.debug.dylib"
+                  symbolName = "Trackli.PersistenceController.preview.unsafeMutableAddressor : Trackli.PersistenceController"
+                  moduleName = "Trackli.debug.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/natalianikiforuk/Desktop/Swift/Trackli/Trackli/Persistence.swift"
                   startingColumnNumber = "9223372036854775807"
