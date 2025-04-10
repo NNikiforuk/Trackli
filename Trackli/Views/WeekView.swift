@@ -10,6 +10,7 @@ import SwiftUI
 struct WeekView: View {
     @Binding var selectedDate: Date
     let weekNumber: Int
+    let today = Date()
     
     var body: some View {
         HStack {
@@ -18,18 +19,29 @@ struct WeekView: View {
                     Text(formatDayName(date))
                         .font(.caption)
                         .foregroundColor(.calendarText)
-                        .fontWeight(isSameDay(date1: date, date2: selectedDate) ? .bold : .regular)
+                        .fontWeight(
+                            isToday(date: date)
+                            ? .bold
+                            : isTheSameDay(date: date)
+                               ? .bold
+                               : .regular)
                     Text(formatDayNumber(date))
                         .font(.title3)
                         .fontWeight(.bold)
-                        .foregroundColor(.whiteText)
+                        .foregroundStyle(
+                            isToday(date: date)
+                            ? .whiteText
+                            : isTheSameDay(date: date)
+                            ? .whiteText
+                            : .customPrimary)
                         .frame(width: 40, height: 40)
                         .padding(.top, 0)
                         .background(
-                            isSameDay(date1: date, date2: selectedDate)
+                            isToday(date: date)
                             ? .customPrimary
-                            : .customPrimary.opacity(0.5)
-                        )
+                            : isTheSameDay(date: date)
+                               ? .customPrimary.opacity(0.5)
+                               : .clear)
                         .clipShape(Circle())
                 }
                 .onTapGesture {
@@ -40,6 +52,14 @@ struct WeekView: View {
             }
         }
         .padding(.horizontal)
+    }
+    
+    private func isToday(date: Date) -> Bool {
+        return isSameDay(date1: date, date2: today)
+    }
+    
+    private func isTheSameDay(date: Date) -> Bool {
+        return isSameDay(date1: date, date2: selectedDate)
     }
     
     private func getDaysOfWeek(for weekNumber: Int) -> [Date] {
