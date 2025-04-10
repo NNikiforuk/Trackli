@@ -139,6 +139,7 @@ struct ContentView: View {
             }
         }
         .padding(.bottom, 20)
+        .padding(.horizontal)
     }
     
     var themeSwitcher: some View {
