@@ -236,6 +236,7 @@ struct SingleHabitView: View {
         .onTapGesture {
             habit.isCompleted.toggle()
             try? habit.managedObjectContext?.save()
+            WidgetCenter.shared.reloadAllTimelines()
         }
     }
 }
