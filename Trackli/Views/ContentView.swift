@@ -22,8 +22,7 @@ struct ContentView: View {
     @State private var selectedDate = Date()
     @State private var currentPage = 0
     @State private var showAlert = false
-    
-    let weeks = -50...50
+    @State private var weekRange: ClosedRange<Int> = -50...50
     
     var colorScheme: ColorScheme? {
         switch selectedAppearance {
@@ -34,6 +33,14 @@ struct ContentView: View {
         case .light:
             return .light
         }
+    }
+    
+    var isNoData: Bool {
+        habits.isEmpty
+    }
+    
+    var alertTitle: String {
+        return isNoData ? "There is no data already" : "Do you want to delete all habits?"
     }
     
     var todaysHabits: [Habit] {
@@ -96,15 +103,21 @@ struct ContentView: View {
                 }
             }
             .foregroundStyle(.accent)
-            .alert(LocalizedStringKey("Do you want to delete all habits?"), isPresented: $showAlert) {
-                Button(LocalizedStringKey("Yes"), role: .destructive) { deleteAllHabits() }
-                Button(LocalizedStringKey("No"), role: .cancel) { }
+            .alert(LocalizedStringKey(alertTitle), isPresented: $showAlert) {
+                if isNoData {
+                    Button("Ok", role: .cancel) { }
+                } else {
+                    Button(LocalizedStringKey("Yes"), role: .destructive) {
+                        performDeleting()
+                    }
+                    Button(LocalizedStringKey("No"), role: .cancel) { }
+                }
             }
         }
         .preferredColorScheme(colorScheme)
     }
     
-    func deleteAllHabits() {
+    func performDeleting() {
         let fetchRequest1: NSFetchRequest<NSFetchRequestResult> = Habit.fetchRequest()
         let batchDeleteRequest1 = NSBatchDeleteRequest(fetchRequest: fetchRequest1)
         batchDeleteRequest1.resultType = .resultTypeObjectIDs
@@ -158,7 +171,7 @@ struct ContentView: View {
                 .foregroundColor(.primaryText)
                 .padding(.top, 20)
             TabView(selection: $currentPage) {
-                ForEach(weeks, id: \.self) { weekNumber in
+                ForEach(weekRange, id: \.self) { weekNumber in
                     WeekView(
                         selectedDate: $selectedDate,
                         weekNumber: weekNumber
@@ -168,6 +181,14 @@ struct ContentView: View {
             }
             .tabViewStyle(.page(indexDisplayMode: .never))
             .frame(height: 100)
+            .onChange(of: currentPage) { newValue in
+                if newValue == weekRange.upperBound {
+                    weekRange = weekRange.lowerBound ... (weekRange.upperBound + 50)
+                }
+                else if newValue == weekRange.lowerBound {
+                    weekRange = (weekRange.lowerBound - 50) ... weekRange.upperBound
+                }
+            }
         }
     }
 }

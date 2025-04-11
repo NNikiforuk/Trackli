@@ -26,7 +26,7 @@ func formatMonth(for weekNumber: Int) -> String {
         return ""
     }
     
-    let locale = Locale(identifier: "pl_PL")
+    let locale = Locale.current
     
     let startMonthFormatter = DateFormatter()
     startMonthFormatter.locale = locale

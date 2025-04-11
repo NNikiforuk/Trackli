@@ -33,7 +33,7 @@
 "Fri" = "Piąt";
 "Sat" = "Sob";
 "Sun" = "Nie";
-"first_day_before_last_day" = "Pierwszy dzień nie może być późniejszy niż ostatni dzień";
+"first_day_before_last_day" = "Pierwszy dzień nie może być późniejszy niż ostatni";
 "title_not_empty" = "Brak tytułu";
 "no_toggle" = "Nie wybrano formatu";
 "too_many_toggles" = "Wybrano za dużo formatów";
@@ -41,3 +41,5 @@
 "Do you want to delete all habits?" = "Czy na pewno chcesz usunąć wszystkie nawyki?";
 "Yes" = "Tak";
 "No" = "Nie";
+"There is no data already" = "Brak nawyków do usunięcia";
+"Cancel" = "Powrót";
