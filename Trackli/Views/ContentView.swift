@@ -91,16 +91,14 @@ struct ContentView: View {
                         showAlert.toggle()
                     } label: {
                         Text(LocalizedStringKey("Delete all"))
-                            .font(.body.bold())
                         Image(systemName: "trash")
-                            .font(.caption.bold())
                     }
                 }
             }
             .foregroundStyle(.accent)
-            .alert("Do you want to delete all habits?", isPresented: $showAlert) {
-                Button("Yes", role: .destructive) { deleteAllHabits() }
-                Button("No", role: .cancel) { }
+            .alert(LocalizedStringKey("Do you want to delete all habits?"), isPresented: $showAlert) {
+                Button(LocalizedStringKey("Yes"), role: .destructive) { deleteAllHabits() }
+                Button(LocalizedStringKey("No"), role: .cancel) { }
             }
         }
         .preferredColorScheme(colorScheme)
@@ -138,7 +136,7 @@ struct ContentView: View {
     }
     
     var habitsHeader: some View {
-        HStack(alignment: .center) {
+        HStack(alignment: .firstTextBaseline) {
             Text(LocalizedStringKey("Today's habits"))
                 .foregroundStyle(.primaryText)
                 .font(.title2.bold())

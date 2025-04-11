@@ -38,3 +38,6 @@
 "no_toggle" = "Nie wybrano formatu";
 "too_many_toggles" = "Wybrano za dużo formatów";
 "select_specific_day" = "Wybierz konkretny dzień lub dni";
+"Do you want to delete all habits?" = "Czy na pewno chcesz usunąć wszystkie nawyki?";
+"Yes" = "Tak";
+"No" = "Nie";

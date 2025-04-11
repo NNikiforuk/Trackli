@@ -38,3 +38,6 @@
 "no_toggle" = "No toggle selected";
 "too_many_toggles" = "To many toggles selected";
 "select_specific_day" = "Select specific day";
+"Do you want to delete all habits?" = "Do you want to delete all habits?";
+"Yes" = "Yes";
+"No" = "No";
