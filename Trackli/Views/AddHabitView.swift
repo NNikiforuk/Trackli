@@ -24,6 +24,7 @@ struct AddHabitView: View {
     
     @State private var showValidationAlert = false
     @State private var alertContent = ""
+    @State private var isHabitCreated = false
     
     let calendar = Calendar.current
     
@@ -135,6 +136,10 @@ struct AddHabitView: View {
             return NSLocalizedString("select_specific_day", comment: "Select specific day")
         }
         
+        if weekdaysOptionSelected && !isHabitCreated {
+            return NSLocalizedString("no_weekday_found", comment: "No matching weekday(s) found in the given range")
+        }
+        
         return nil
     }
     
@@ -201,6 +206,7 @@ struct AddHabitView: View {
             let dayName = formatter.string(from: date)
             
             if dayNames.contains(dayName) {
+                isHabitCreated = true
                 let newHabit = Habit(context: viewContext)
                 newHabit.id = UUID()
                 newHabit.title = newTitle

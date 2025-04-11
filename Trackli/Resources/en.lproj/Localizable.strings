@@ -43,3 +43,4 @@
 "No" = "No";
 "There is no data already" = "There is no data already";
 "Cancel" = "Cancel";
+"no_weekday_found" =  "No matching weekday(s) found in the given range";
