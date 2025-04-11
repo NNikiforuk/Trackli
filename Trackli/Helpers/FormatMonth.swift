@@ -26,16 +26,21 @@ func formatMonth(for weekNumber: Int) -> String {
         return ""
     }
     
+    let locale = Locale(identifier: "pl_PL")
+    
     let startMonthFormatter = DateFormatter()
-    startMonthFormatter.dateFormat = "MMMM"
+    startMonthFormatter.locale = locale
+    startMonthFormatter.dateFormat = "LLLL"
     let startMonth = startMonthFormatter.string(from: weekStart)
     
     let endMonthFormatter = DateFormatter()
-    endMonthFormatter.dateFormat = "MMMM"
+    endMonthFormatter.locale = locale
+    endMonthFormatter.dateFormat = "LLLL"
     let endMonth = endMonthFormatter.string(from: weekEnd)
     
     let yearFormatter = DateFormatter()
-    yearFormatter.dateFormat = "YYYY"
+    yearFormatter.locale = locale
+    yearFormatter.dateFormat = "yyyy"
     let year = yearFormatter.string(from: targetDate)
     
     if startMonth != endMonth {

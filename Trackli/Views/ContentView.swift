@@ -90,7 +90,7 @@ struct ContentView: View {
                     Button {
                         showAlert.toggle()
                     } label: {
-                        Text("Delete all")
+                        Text(LocalizedStringKey("Delete all"))
                             .font(.body.bold())
                         Image(systemName: "trash")
                             .font(.caption.bold())
@@ -126,7 +126,7 @@ struct ContentView: View {
     }
     
     var noNotes: some View {
-        Text("No notes")
+        Text(LocalizedStringKey("No data"))
             .padding(.top, 20)
             .foregroundStyle(.primaryText)
     }
@@ -134,11 +134,12 @@ struct ContentView: View {
     var noChart: some View {
         Text("")
             .frame(height: 100)
+            .padding(.vertical, 40)
     }
     
     var habitsHeader: some View {
         HStack(alignment: .center) {
-            Text("Today's habits")
+            Text(LocalizedStringKey("Today's habits"))
                 .foregroundStyle(.primaryText)
                 .font(.title2.bold())
             Spacer()
@@ -228,7 +229,7 @@ struct Chart: View {
         ZStack{
             Circle()
                 .stroke(lineWidth: 20)
-                .opacity(0.3)
+                .opacity(0.2)
                 .foregroundStyle(.accent)
             Text(percentText)
                 .foregroundStyle(.chartText)
@@ -240,6 +241,7 @@ struct Chart: View {
                 .animation(.easeOut(duration: 0.5), value: todaysProgress)
         }
         .frame(height: 100)
+        .padding(.vertical, 40)
         .preferredColorScheme(colorScheme)
     }
 }

@@ -62,7 +62,7 @@ struct AddHabitView: View {
                     }) {
                         HStack {
                             Image(systemName: "chevron.left")
-                            Text("Back")
+                            Text(LocalizedStringKey("Back"))
                         }
                         .foregroundColor(.accentColor)
                     }
@@ -76,7 +76,7 @@ struct AddHabitView: View {
                             addNewHabit()
                         }
                     }) {
-                        Text("Save")
+                        Text(LocalizedStringKey("Save"))
                             .fontWeight(.bold)
                     }
                 }
@@ -86,7 +86,7 @@ struct AddHabitView: View {
     }
     
     var header: some View {
-        Text("Add new habit")
+        Text(LocalizedStringKey("Add new habit"))
             .font(.title2)
             .fontWeight(.bold)
             .padding(.top, 20)
@@ -101,7 +101,7 @@ struct AddHabitView: View {
     }
     
     var newHabitTextField: some View {
-        TextField("e.g. Flossing", text: $newTitle)
+        TextField(LocalizedStringKey("E.g. Flossing"), text: $newTitle)
             .autocorrectionDisabled()
             .elementModifier()
     }
@@ -116,23 +116,23 @@ struct AddHabitView: View {
     
     func validationError() -> String? {
         if normalizedStartDate > normalizedEndDate {
-            return "The first day must be on or before the last day"
+            return NSLocalizedString("first_day_before_last_day", comment: "The first day must be on or before the last day")
         }
         
         if newTitle.isEmpty {
-            return "Title cannot be empty"
+            return NSLocalizedString("title_not_empty", comment: "Title cannot be empty")
         }
         
         if selectedTogglesCount == 0 {
-            return "No toggle selected"
+            return NSLocalizedString("no_toggle", comment: "No toggle selected")
         }
         
         if selectedTogglesCount > 1 {
-            return "Too many toggles selected"
+            return NSLocalizedString("too_many_toggles", comment: "To many toggles selected")
         }
         
         if weekdaysOptionSelected && selectedWeekdays.isEmpty {
-            return "Select specific day"
+            return NSLocalizedString("select_specific_day", comment: "Select specific day")
         }
         
         return nil
@@ -158,21 +158,21 @@ struct AddHabitView: View {
         let currentDate = normalizedStartDate
         
         if everydayOptionSelected {
-            createHabitRepeatingEvery(days: 1, format: "everyday", currentDate: currentDate)
+            createHabitRepeatingEvery(days: 1, currentDate: currentDate)
         }
         
         if xDaysOptionSelected {
-            createHabitRepeatingEvery(days: xDays, format: "everyXDays", currentDate: currentDate)
+            createHabitRepeatingEvery(days: xDays, currentDate: currentDate)
         }
         
         if weekdaysOptionSelected {
-            createHabitOnWeekdays(dayNames: selectedWeekdays, format: "weekdays", currentDate: currentDate)
+            createHabitOnWeekdays(dayNames: selectedWeekdays, currentDate: currentDate)
         }
         
         save()
     }
     
-    func createHabitRepeatingEvery(days: Int, format: String, currentDate: Date) {
+    func createHabitRepeatingEvery(days: Int, currentDate: Date) {
         var date = currentDate
         
         while date <= normalizedEndDate {
@@ -181,7 +181,6 @@ struct AddHabitView: View {
             newHabit.id = UUID()
             newHabit.title = newTitle
             newHabit.isCompleted = false
-            newHabit.scheme = format
             newHabit.startDate = date
             
             if let nextDate = calendar.date(byAdding: .day, value: days, to: date) {
@@ -192,7 +191,7 @@ struct AddHabitView: View {
         }
     }
     
-    func createHabitOnWeekdays(dayNames: Set<String>, format: String, currentDate: Date) {
+    func createHabitOnWeekdays(dayNames: Set<String>, currentDate: Date) {
         var date = currentDate
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "en_US_POSIX")
@@ -206,7 +205,6 @@ struct AddHabitView: View {
                 newHabit.id = UUID()
                 newHabit.title = newTitle
                 newHabit.isCompleted = false
-                newHabit.scheme = format
                 newHabit.startDate = date
             }
             
@@ -254,9 +252,17 @@ struct HabitToggles: View {
         NewHabitToggle(selectedOption: $everydayOptionSelected, title: "Everyday")
     }
     
+    var everyXDaysToggleTitle: String {
+        if xDaysOptionSelected {
+            return String(format: NSLocalizedString("every_x_days", comment: "Title for habit toggle when a specific number of days is selected"), xDays)
+        } else {
+            return NSLocalizedString("every_x_days_default", comment: "Title for habit toggle when a default value is used")
+        }
+    }
+    
     var everyXDays: some View {
         VStack {
-            NewHabitToggle(selectedOption: $xDaysOptionSelected, title: xDaysOptionSelected ? "Every \(xDays) days" : "Every x days")
+            NewHabitToggle(selectedOption: $xDaysOptionSelected, title: everyXDaysToggleTitle)
             
             if xDaysOptionSelected {
                 Stepper("", value: $xDays, in: 2...14)
@@ -280,7 +286,7 @@ struct HabitToggles: View {
                                 selectedWeekdays.insert(day)
                             }
                         }) {
-                            Text(day)
+                            Text(LocalizedStringKey(day))
                                 .font(.subheadline.bold())
                                 .frame(width: 44, height: 36)
                                 .background(selectedWeekdays.contains(day) ? .accent.opacity(0.4) : .customPrimary.opacity(0.5))
@@ -301,7 +307,7 @@ struct NewHabitToggle: View {
     
     var body: some View {
         Toggle(isOn: $selectedOption) {
-            Text(title)
+            Text(LocalizedStringKey(title))
                 .fontWeight(.bold)
         }
         .tint(.accent)
@@ -309,14 +315,14 @@ struct NewHabitToggle: View {
         .onChange(of: selectedOption) { _ in
             hideKeyboard()
         }
-    } 
+    }
 }
 
 struct SectionSubheadline: View {
     let title: String
     
     var body: some View {
-        Text(title)
+        Text(LocalizedStringKey(title))
             .font(.subheadline)
             .foregroundColor(.secondary)
     }

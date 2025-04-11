@@ -78,7 +78,7 @@ struct WeekView: View {
     
     private func formatDayName(_ date: Date) -> String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "EEE"
+        formatter.dateFormat = "E"
         return formatter.string(from: date)
     }
     

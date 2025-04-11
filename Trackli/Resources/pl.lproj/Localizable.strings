@@ -1,0 +1,40 @@
+/* 
+  Localizable.strings
+  Trackli
+
+  Created by Natalia Nikiforuk on 10/04/2025.
+  
+*/
+
+"Today's habits" = "Dzisiejsze nawyki";
+"Back" = "Wróć";
+"Settings" = "Ustawienia";
+"Choose appearance" = "Wybierz wygląd";
+"System" = "Systemowy";
+"Light" = "Jasny";
+"Dark" = "Ciemny";
+"Delete all" = "Usuń wszystko";
+"No data" = "Brak danych";
+"Save" = "Zapisz";
+"Add new habit" = "Dodaj nowy nawyk";
+"First day" = "Pierwszy dzień";
+"Last day" = "Ostatni dzień";
+"Title" = "Tytuł";
+"E.g. Flossing" = "Np. Nitkowanie zębów";
+"Choose one tracking format" = "Wybierz jeden format";
+"Everyday" = "Codziennie";
+"every_x_days" = "Co %d dni";
+"every_x_days_default" = "Co ile dni";
+"Select day(s) of the week" = "Wybierz konkretny dzień lub dni";
+"Mon" = "Pon";
+"Tue" = "Wt";
+"Wed" = "Śr";
+"Thu" = "Czw";
+"Fri" = "Piąt";
+"Sat" = "Sob";
+"Sun" = "Nie";
+"first_day_before_last_day" = "Pierwszy dzień nie może być późniejszy niż ostatni dzień";
+"title_not_empty" = "Brak tytułu";
+"no_toggle" = "Nie wybrano formatu";
+"too_many_toggles" = "Wybrano za dużo formatów";
+"select_specific_day" = "Wybierz konkretny dzień lub dni";

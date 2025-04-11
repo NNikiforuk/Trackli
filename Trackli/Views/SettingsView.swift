@@ -24,7 +24,7 @@ struct SettingsView: View {
     }
     
     var header: some View {
-        Text("Settings")
+        Text(LocalizedStringKey("Settings"))
             .font(.title2)
             .fontWeight(.bold)
             .padding(.top, 20)
@@ -36,7 +36,7 @@ struct SettingsView: View {
             VStack {
                 Picker("", selection: $selectedAppearance) {
                     ForEach(Appearance.allCases) { mode in
-                        Text(mode.rawValue).tag(mode)
+                        Text(LocalizedStringKey(mode.rawValue)).tag(mode)
                     }
                 }
                 .foregroundStyle(.customPrimary)
