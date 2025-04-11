@@ -85,20 +85,23 @@ struct CustomWidgetEntryView : View {
     var body: some View {
         VStack {
            if habitsCount == 0 {
-                Text("No pending habits for today!")
+               Text(LocalizedStringKey("Good job!"))
+                   .font(.body.bold())
            } else {
                HStack {
                    VStack(alignment: .leading) {
-                       Text("Pending habits")
+                       Text(LocalizedStringKey("Still unchecked"))
                            .font(.caption)
                            .foregroundColor(.secondary)
                            .padding(.bottom, 5)
                        ForEach(entry.habits) { habit in
                            if let title = habit.title {
                                Text(title)
-                                   .font(.callout.bold())
+                                   .font(.caption.bold())
+                                   .padding(.bottom, 1)
                            }
                        }
+                       .foregroundStyle(.primaryText)
                        Spacer()
                    }
                    Spacer()
@@ -116,7 +119,6 @@ struct CustomWidgetEntryView : View {
 
 struct LinearProgressView: View {
     var progress: Double
-    var progressColor: Color = .customPrimary
     
     var body: some View {
         GeometryReader { geometry in
@@ -126,7 +128,7 @@ struct LinearProgressView: View {
                         width: 10,
                         height: geometry.size.height * CGFloat(min(progress, 1.0))
                     )
-                    .foregroundColor(progressColor)
+                    .foregroundColor(.accent)
                     .animation(.easeOut(duration: 0.8), value: progress)
                 
                 RoundedRectangle(cornerRadius: 5)

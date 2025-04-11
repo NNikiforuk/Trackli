@@ -71,6 +71,7 @@
 		F516CA1D2DA6B8BD00698F9E /* Exceptions for "Trackli" folder in "CustomWidgetExtension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				"/Localized: Resources/Localizable.strings",
 				Persistence.swift,
 				Trackli.xcdatamodeld,
 			);
