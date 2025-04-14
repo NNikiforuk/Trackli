@@ -12,23 +12,24 @@ struct SimpleEntry: TimelineEntry {
     let date: Date
     let habits: [Habit]
     let progress: Double
+    let howManyToday: Int
 }
 
 struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
-        return SimpleEntry(date: Date(), habits: filterUnfinished(), progress: countProgress())
+        return SimpleEntry(date: Date(), habits: filterUnfinished(), progress: countProgress(), howManyToday: countHowManyToday())
     }
     
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
         let items = filterUnfinished()
-        let entry = SimpleEntry(date: Date(), habits: items, progress: countProgress())
+        let entry = SimpleEntry(date: Date(), habits: items, progress: countProgress(), howManyToday: countHowManyToday())
         
         completion(entry)
     }
     
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         let items = filterUnfinished()
-        let entry = SimpleEntry(date: Date(), habits: items, progress: countProgress())
+        let entry = SimpleEntry(date: Date(), habits: items, progress: countProgress(), howManyToday: countHowManyToday())
         let timeline = Timeline(entries: [entry], policy: .atEnd)
         
         completion(timeline)
@@ -61,6 +62,10 @@ struct Provider: TimelineProvider {
         }
     }
     
+    func countHowManyToday() -> Int {
+        return filterTodaysHabits().count
+    }
+    
     func filterUnfinished() -> [Habit] {
         let todaysHabits = filterTodaysHabits()
         
@@ -76,41 +81,79 @@ struct Provider: TimelineProvider {
 }
 
 struct CustomWidgetEntryView : View {
-    var entry: Provider.Entry
+    @Environment(\.widgetFamily) var widgetFamily
     
-    var habitsCount: Int {
-        entry.habits.count
-    }
+    var entry: Provider.Entry
+    var habitsCount: Int { entry.habits.count }
+    var percentText: String { "\(Int(entry.progress * 100))%" }
+    var current: Double { entry.progress }
+    var minValue: Double { 0 }
+    var maxValue: Int { entry.howManyToday }
     
     var body: some View {
+        if #available(iOS 16.0, *) {
+            if widgetFamily == .accessoryCircular {
+//                Gauge(value: current, in: minValue...Double(maxValue)) {
+//                    Text(percentText)
+//                } currentValueLabel: {
+//                    Text(percentText)
+//                } minimumValueLabel: {
+//                    Text("\(Int(minValue))")
+//                } maximumValueLabel: {
+//                    Text("\(maxValue)")
+//                }
+//                .gaugeStyle(.accessoryCircular)
+                ZStack{
+                    Circle()
+                        .stroke(lineWidth: 20)
+                        .opacity(0.2)
+                        .foregroundStyle(.accent)
+                    Text(percentText)
+                        .foregroundStyle(.accent)
+                    Circle()
+                        .trim(from: 0.0, to: entry.progress)
+                        .stroke(style: StrokeStyle(lineWidth: 10, lineCap: .round))
+                        .foregroundStyle(.accent)
+                        .rotationEffect(.degrees(-90))
+                }
+            } else {
+                content
+            }
+        } else {
+            content
+        }
+    }
+    
+    var content: some View {
         VStack {
-           if habitsCount == 0 {
-               Text(LocalizedStringKey("Good job!"))
-                   .font(.body.bold())
-           } else {
-               HStack {
-                   VStack(alignment: .leading) {
-                       Text(LocalizedStringKey("Still unchecked"))
-                           .font(.caption)
-                           .foregroundColor(.secondary)
-                           .padding(.bottom, 5)
-                       ForEach(entry.habits) { habit in
-                           if let title = habit.title {
-                               Text(title)
-                                   .font(.caption.bold())
-                                   .padding(.bottom, 1)
-                           }
-                       }
-                       .foregroundStyle(.primaryText)
-                       Spacer()
-                   }
-                   Spacer()
-                   VStack {
-                       LinearProgressView(progress: entry.progress)
-                   }
-               }
-               Spacer()
-           }
+            if habitsCount == 0 {
+                Text(LocalizedStringKey("Good job!"))
+                    .font(.body.bold())
+                    .foregroundStyle(.noDataText)
+            } else {
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text(LocalizedStringKey("Still unchecked"))
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                            .padding(.bottom, 5)
+                        ForEach(entry.habits) { habit in
+                            if let title = habit.title {
+                                Text(title)
+                                    .font(.caption.bold())
+                                    .padding(.bottom, 1)
+                            }
+                        }
+                        .foregroundStyle(.primaryText)
+                        Spacer()
+                    }
+                    Spacer()
+                    VStack {
+                        LinearProgressView(progress: entry.progress)
+                    }
+                }
+                Spacer()
+            }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .foregroundColor(.customPrimary)
@@ -128,7 +171,7 @@ struct LinearProgressView: View {
                         width: 10,
                         height: geometry.size.height * CGFloat(min(progress, 1.0))
                     )
-                    .foregroundColor(.accent)
+                    .foregroundColor(.progressBar)
                     .animation(.easeOut(duration: 0.8), value: progress)
                 
                 RoundedRectangle(cornerRadius: 5)
@@ -144,6 +187,20 @@ struct LinearProgressView: View {
 struct CustomWidget: Widget {
     let kind: String = "CustomWidget"
     
+    var supportedFamilies: [WidgetFamily] {
+        var families: [WidgetFamily] = [.systemSmall, .systemMedium]
+        
+        if #available(iOS 16.0, *) {
+            families.append(contentsOf: [
+                .accessoryInline,
+                .accessoryCircular,
+                .accessoryRectangular
+            ])
+        }
+        
+        return families
+    }
+    
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             if #available(iOS 17.0, *) {
@@ -155,6 +212,7 @@ struct CustomWidget: Widget {
                     .background()
             }
         }
+        .supportedFamilies(supportedFamilies)
         .configurationDisplayName("My Widget")
         .description("This is an example widget.")
     }
