@@ -197,11 +197,9 @@ struct AddHabitView: View {
     }
     
     func createHabitOnWeekdays(dayNames: Set<Weekday>, currentDate: Date) {
-        print("👉 Start sprawdzania dni")
         var date = currentDate
         
         while date <= normalizedEndDate {
-            print("📅 Sprawdzam date: \(date)")
             guard let weekday = Weekday.from(date: date) else {
                 continue
             }

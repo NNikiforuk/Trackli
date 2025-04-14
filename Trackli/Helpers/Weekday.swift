@@ -21,7 +21,6 @@ enum Weekday: String, CaseIterable, Identifiable {
         formatter.locale = Locale(identifier: "en_US_POSIX")
         formatter.dateFormat = "EEE"
         let key = formatter.string(from: date)
-        print("→ Dzień: \(key)")
         return Weekday(rawValue: key)
     }
 }
