@@ -77,12 +77,20 @@
 			);
 			target = F516CA032DA6B1DA00698F9E /* CustomWidgetExtension */;
 		};
+		F5E74FEE2DAD47CB000F82CA /* Exceptions for "Trackli" folder in "Trackli" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = F516C9722DA6A38B00698F9E /* Trackli */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		F516C9752DA6A38B00698F9E /* Trackli */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
+				F5E74FEE2DAD47CB000F82CA /* Exceptions for "Trackli" folder in "Trackli" target */,
 				F516CA1D2DA6B8BD00698F9E /* Exceptions for "Trackli" folder in "CustomWidgetExtension" target */,
 			);
 			path = Trackli;
@@ -535,6 +543,7 @@
 				DEVELOPMENT_TEAM = HCL5YVAR64;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Trackli/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Trackli;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -570,6 +579,7 @@
 				DEVELOPMENT_TEAM = HCL5YVAR64;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Trackli/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Trackli;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
