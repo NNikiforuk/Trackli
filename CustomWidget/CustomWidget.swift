@@ -93,19 +93,9 @@ struct CustomWidgetEntryView : View {
     var body: some View {
         if #available(iOS 16.0, *) {
             if widgetFamily == .accessoryCircular {
-//                Gauge(value: current, in: minValue...Double(maxValue)) {
-//                    Text(percentText)
-//                } currentValueLabel: {
-//                    Text(percentText)
-//                } minimumValueLabel: {
-//                    Text("\(Int(minValue))")
-//                } maximumValueLabel: {
-//                    Text("\(maxValue)")
-//                }
-//                .gaugeStyle(.accessoryCircular)
-                ZStack{
+                ZStack(alignment: .center) {
                     Circle()
-                        .stroke(lineWidth: 20)
+                        .stroke(lineWidth: 10)
                         .opacity(0.2)
                         .foregroundStyle(.accent)
                     Text(percentText)
