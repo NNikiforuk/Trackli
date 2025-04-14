@@ -1,0 +1,48 @@
+/* 
+  Localizable.strings
+  Trackli
+
+  Created by Natalia Nikiforuk on 10/04/2025.
+  
+*/
+
+"Today's habits" = "今天的习惯";
+"Back" = "返回";
+"Settings" = "设置";
+"Choose appearance" = "选择外观";
+"System" = "系统";
+"Light" = "浅色";
+"Dark" = "深色";
+"Delete all" = "全部删除";
+"No data" = "暂无数据";
+"Save" = "保存";
+"Add new habit" = "添加新习惯";
+"First day" = "起始日期";
+"Last day" = "结束日期";
+"Title" = "标题";
+"E.g. Flossing" = "例如：牙线清洁";
+"Choose one tracking format" = "选择一种追踪方式";
+"Everyday" = "每天";
+"Select day(s) of the week" = "选择星期几";
+"Mon" = "周一";
+"Tue" = "周二";
+"Wed" = "周三";
+"Thu" = "周四";
+"Fri" = "周五";
+"Sat" = "周六";
+"Sun" = "周日";
+"every_x_days" = "每 %d 天";
+"every_x_days_default" = "每 x 天";
+"first_day_before_last_day" = "起始日期必须早于或等于结束日期";
+"title_not_empty" = "标题不能为空";
+"no_toggle" = "未选择任何选项";
+"too_many_toggles" = "选择了过多选项";
+"select_specific_day" = "请选择具体的星期几";
+"Do you want to delete all habits?" = "您要删除所有习惯吗？";
+"Yes" = "是";
+"No" = "否";
+"There is no data already" = "当前无任何数据";
+"Cancel" = "取消";
+"no_weekday_found" = "在所选日期范围内未找到匹配的星期几";
+"Still unchecked" = "尚未完成";
+"Good job!" = "干得好！";
