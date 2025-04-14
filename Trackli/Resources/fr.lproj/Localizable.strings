@@ -1,0 +1,48 @@
+/* 
+  Localizable.strings
+  Trackli
+
+  Created by Natalia Nikiforuk on 10/04/2025.
+  
+*/
+
+"Today's habits" = "Habitudes du jour";
+"Back" = "Retour";
+"Settings" = "Paramètres";
+"Choose appearance" = "Choisir l’apparence";
+"System" = "Système";
+"Light" = "Clair";
+"Dark" = "Sombre";
+"Delete all" = "Tout supprimer";
+"No data" = "Aucune donnée";
+"Save" = "Enregistrer";
+"Add new habit" = "Ajouter une nouvelle habitude";
+"First day" = "Premier jour";
+"Last day" = "Dernier jour";
+"Title" = "Titre";
+"E.g. Flossing" = "Par ex. : Fil dentaire";
+"Choose one tracking format" = "Choisissez un format de suivi";
+"Everyday" = "Chaque jour";
+"Select day(s) of the week" = "Sélectionnez le(s) jour(s) de la semaine";
+"Mon" = "Lun";
+"Tue" = "Mar";
+"Wed" = "Mer";
+"Thu" = "Jeu";
+"Fri" = "Ven";
+"Sat" = "Sam";
+"Sun" = "Dim";
+"every_x_days" = "Tous les %d jours";
+"every_x_days_default" = "Tous les x jours";
+"first_day_before_last_day" = "Le premier jour doit précéder ou être identique au dernier jour";
+"title_not_empty" = "Le titre ne peut pas être vide";
+"no_toggle" = "Aucune option sélectionnée";
+"too_many_toggles" = "Trop d’options sélectionnées";
+"select_specific_day" = "Veuillez sélectionner un jour spécifique";
+"Do you want to delete all habits?" = "Voulez-vous supprimer toutes les habitudes ?";
+"Yes" = "Oui";
+"No" = "Non";
+"There is no data already" = "Il n'y a déjà aucune donnée";
+"Cancel" = "Annuler";
+"no_weekday_found" = "Aucun jour correspondant trouvé dans la plage de dates sélectionnée";
+"Still unchecked" = "Encore non cochées";
+"Good job!" = "Bien joué !";

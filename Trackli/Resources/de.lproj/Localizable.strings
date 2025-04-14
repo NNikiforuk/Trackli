@@ -1,0 +1,48 @@
+/* 
+  Localizable.strings
+  Trackli
+
+  Created by Natalia Nikiforuk on 10/04/2025.
+  
+*/
+
+"Today's habits" = "Heutige Gewohnheiten";
+"Back" = "Zurück";
+"Settings" = "Einstellungen";
+"Choose appearance" = "Darstellung wählen";
+"System" = "System";
+"Light" = "Hell";
+"Dark" = "Dunkel";
+"Delete all" = "Alle löschen";
+"No data" = "Keine Daten";
+"Save" = "Speichern";
+"Add new habit" = "Neue Gewohnheit hinzufügen";
+"First day" = "Erster Tag";
+"Last day" = "Letzter Tag";
+"Title" = "Titel";
+"E.g. Flossing" = "Z. B.: Zahnseide";
+"Choose one tracking format" = "Wähle ein Verfolgungsformat";
+"Everyday" = "Jeden Tag";
+"Select day(s) of the week" = "Wähle Wochentag(e)";
+"Mon" = "Mo";
+"Tue" = "Di";
+"Wed" = "Mi";
+"Thu" = "Do";
+"Fri" = "Fr";
+"Sat" = "Sa";
+"Sun" = "So";
+"every_x_days" = "Alle %d Tage";
+"every_x_days_default" = "Alle x Tage";
+"first_day_before_last_day" = "Der erste Tag muss vor oder gleich dem letzten Tag sein";
+"title_not_empty" = "Titel darf nicht leer sein";
+"no_toggle" = "Keine Option ausgewählt";
+"too_many_toggles" = "Zu viele Optionen ausgewählt";
+"select_specific_day" = "Wähle einen bestimmten Tag";
+"Do you want to delete all habits?" = "Möchtest du alle Gewohnheiten löschen?";
+"Yes" = "Ja";
+"No" = "Nein";
+"There is no data already" = "Es liegen bereits keine Daten vor";
+"Cancel" = "Abbrechen";
+"no_weekday_found" = "Kein passender Wochentag im angegebenen Bereich gefunden";
+"Still unchecked" = "Noch nicht erledigt";
+"Good job!" = "Gut gemacht!";
