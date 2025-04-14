@@ -30,7 +30,7 @@
 "Tue" = "Wt";
 "Wed" = "Śr";
 "Thu" = "Czw";
-"Fri" = "Piąt";
+"Fri" = "Pt";
 "Sat" = "Sob";
 "Sun" = "Nie";
 "first_day_before_last_day" = "Pierwszy dzień nie może być późniejszy niż ostatni";

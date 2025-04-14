@@ -14,7 +14,7 @@ struct AddHabitView: View {
     
     @State private var newTitle = ""
     @State private var xDays = 2
-    @State private var selectedWeekdays: Set<String> = []
+    @State private var selectedWeekdays: Set<Weekday> = []
     @State private var startDate = Date()
     @State private var endDate = Date()
     
@@ -70,11 +70,13 @@ struct AddHabitView: View {
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
+                        addNewHabit()
+                        
                         if let error = validationError() {
                             alertContent = error
                             showValidationAlert = true
                         } else {
-                            addNewHabit()
+                            save()
                         }
                     }) {
                         Text(LocalizedStringKey("Save"))
@@ -173,8 +175,6 @@ struct AddHabitView: View {
         if weekdaysOptionSelected {
             createHabitOnWeekdays(dayNames: selectedWeekdays, currentDate: currentDate)
         }
-        
-        save()
     }
     
     func createHabitRepeatingEvery(days: Int, currentDate: Date) {
@@ -196,16 +196,17 @@ struct AddHabitView: View {
         }
     }
     
-    func createHabitOnWeekdays(dayNames: Set<String>, currentDate: Date) {
+    func createHabitOnWeekdays(dayNames: Set<Weekday>, currentDate: Date) {
+        print("👉 Start sprawdzania dni")
         var date = currentDate
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "en_US_POSIX")
-        formatter.dateFormat = "EEE"
         
         while date <= normalizedEndDate {
-            let dayName = formatter.string(from: date)
+            print("📅 Sprawdzam date: \(date)")
+            guard let weekday = Weekday.from(date: date) else {
+                continue
+            }
             
-            if dayNames.contains(dayName) {
+            if dayNames.contains(weekday) {
                 isHabitCreated = true
                 let newHabit = Habit(context: viewContext)
                 newHabit.id = UUID()
@@ -238,10 +239,9 @@ struct HabitToggles: View {
     @Binding var everydayOptionSelected: Bool
     @Binding var weekdaysOptionSelected: Bool
     @Binding var xDays: Int
-    @Binding var selectedWeekdays: Set<String>
+    @Binding var selectedWeekdays: Set<Weekday>
     
     var selectedTogglesCount: Int
-    let weekdays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
     
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
@@ -284,7 +284,7 @@ struct HabitToggles: View {
             
             if weekdaysOptionSelected {
                 HStack(spacing: 8) {
-                    ForEach(weekdays, id: \.self) { day in
+                    ForEach(Weekday.allCases) { day in
                         Button(action: {
                             if selectedWeekdays.contains(day) {
                                 selectedWeekdays.remove(day)
@@ -292,7 +292,7 @@ struct HabitToggles: View {
                                 selectedWeekdays.insert(day)
                             }
                         }) {
-                            Text(LocalizedStringKey(day))
+                            Text(day.localizedName)
                                 .font(.subheadline.bold())
                                 .frame(width: 44, height: 36)
                                 .background(selectedWeekdays.contains(day) ? .accent.opacity(0.4) : .customPrimary.opacity(0.5))
