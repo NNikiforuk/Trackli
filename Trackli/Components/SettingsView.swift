@@ -8,19 +8,21 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @AppStorage("appearance") private var selectedAppearance: Appearance = .system
+    var colorScheme: ColorScheme?
+    let isIPad: Bool
     
     var body: some View {
         NavigationView {
             VStack {
                 header
-                settingsPicker
+                SettingsPicker(isIPad: isIPad)
                 Spacer()
             }
             .padding()
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(.bcg)
         }
+        .preferredColorScheme(colorScheme)
     }
     
     var header: some View {
@@ -29,27 +31,45 @@ struct SettingsView: View {
             .fontWeight(.bold)
             .padding(.top, 20)
     }
+}
+
+struct SettingsPicker: View {
+    @AppStorage("appearance") private var selectedAppearance: Appearance = .system
+    let isIPad: Bool
     
-    var settingsPicker: some View {
+    var body: some View {
         VStack(alignment: .leading, spacing: 6) {
-            SectionSubheadline(title: "Choose appearance")
+            if !isIPad {
+                SectionSubheadline(title: "Theme")
+                    .foregroundStyle(.accent)
+            }
             VStack {
                 Picker("", selection: $selectedAppearance) {
                     ForEach(Appearance.allCases) { mode in
                         Text(LocalizedStringKey(mode.rawValue)).tag(mode)
                     }
                 }
-                .foregroundStyle(.customPrimary)
-                .background(.habitBcg.opacity(0.9))
+                .background(isIPad ? .bcg : .habitBcg.opacity(0.9))
                 .clipShape(.rect(cornerRadius: 8))
                 .labelsHidden()
-                .pickerStyle(SegmentedPickerStyle())
+                .pickerStyleForDevice(isIPad: UIDevice.current.userInterfaceIdiom == .pad)
             }
         }
         .padding(.top, 30)
     }
 }
 
+extension View {
+    @ViewBuilder
+    func pickerStyleForDevice(isIPad: Bool) -> some View {
+        if isIPad {
+            self.pickerStyle(MenuPickerStyle())
+        } else {
+            self.pickerStyle(SegmentedPickerStyle())
+        }
+    }
+}
+
 #Preview {
-    SettingsView()
+    SettingsView(colorScheme: .light, isIPad: false)
 }

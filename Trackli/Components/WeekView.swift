@@ -11,13 +11,14 @@ struct WeekView: View {
     @Binding var selectedDate: Date
     let weekNumber: Int
     let today = Date()
+    let isIPad: Bool
     
     var body: some View {
-        HStack {
+        HStack(spacing: isIPad ? 20 : 0) {
             ForEach(getDaysOfWeek(for: weekNumber), id: \.self) { date in
-                VStack {
+                VStack() {
                     Text(formatDayName(date))
-                        .font(.caption)
+                        .font(isIPad ? .title2 :  .caption)
                         .foregroundColor(.calendarText)
                         .fontWeight(
                             isToday(date: date)
@@ -95,5 +96,5 @@ struct WeekView: View {
 }
 
 #Preview {
-    WeekView(selectedDate: .constant(Date()), weekNumber: 0)
+    WeekView(selectedDate: .constant(Date()), weekNumber: 0, isIPad: false)
 }

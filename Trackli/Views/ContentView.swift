@@ -64,12 +64,12 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack {
-                calendar
-                if todaysHabits.isEmpty {
-                    noChart
-                } else {
-                    Chart(todaysProgress: todaysProgress, colorScheme: colorScheme)
-                }
+//                calendar
+//                if todaysHabits.isEmpty {
+//                    noChart
+//                } else {
+//                    Chart(todaysProgress: todaysProgress, colorScheme: colorScheme)
+//                }
                 VStack {
                     habitsHeader
                     VStack {
@@ -86,22 +86,22 @@ struct ContentView: View {
             .padding()
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(.bcg)
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    NavigationLink(destination: SettingsView()) {
-                        Image(systemName: "gearshape")
-                            .font(.body.bold())
-                    }
-                }
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button {
-                        showAlert.toggle()
-                    } label: {
-                        Text(LocalizedStringKey("Delete all"))
-                        Image(systemName: "trash")
-                    }
-                }
-            }
+//            .toolbar {
+//                ToolbarItem(placement: .topBarLeading) {
+//                    NavigationLink(destination: SettingsView(colorScheme: colorScheme)) {
+//                        Image(systemName: "gearshape")
+//                            .font(.body.bold())
+//                    }
+//                }
+//                ToolbarItem(placement: .topBarTrailing) {
+//                    Button {
+//                        showAlert.toggle()
+//                    } label: {
+//                        Text(LocalizedStringKey("Delete all"))
+//                        Image(systemName: "trash")
+//                    }
+//                }
+//            }
             .foregroundStyle(.accent)
             .alert(LocalizedStringKey(alertTitle), isPresented: $showAlert) {
                 if isNoData {
@@ -163,34 +163,6 @@ struct ContentView: View {
         .padding(.bottom, 20)
         .padding(.horizontal)
     }
-    
-    var calendar: some View {
-        VStack {
-            Text(formatMonth(for: currentPage))
-                .font(.title2.bold())
-                .foregroundColor(.primaryText)
-                .padding(.top, 20)
-            TabView(selection: $currentPage) {
-                ForEach(weekRange, id: \.self) { weekNumber in
-                    WeekView(
-                        selectedDate: $selectedDate,
-                        weekNumber: weekNumber
-                    )
-                    .tag(weekNumber)
-                }
-            }
-            .tabViewStyle(.page(indexDisplayMode: .never))
-            .frame(height: 100)
-            .onChange(of: currentPage) { newValue in
-                if newValue == weekRange.upperBound {
-                    weekRange = weekRange.lowerBound ... (weekRange.upperBound + 50)
-                }
-                else if newValue == weekRange.lowerBound {
-                    weekRange = (weekRange.lowerBound - 50) ... weekRange.upperBound
-                }
-            }
-        }
-    }
 }
 
 struct Habits: View {
@@ -234,34 +206,6 @@ struct SingleHabitView: View {
             try? habit.managedObjectContext?.save()
             WidgetCenter.shared.reloadAllTimelines()
         }
-    }
-}
-
-struct Chart: View {
-    var todaysProgress: CGFloat
-    var percentText: String {
-        "\(Int(todaysProgress * 100))%"
-    }
-    var colorScheme: ColorScheme?
-    
-    var body: some View {
-        ZStack{
-            Circle()
-                .stroke(lineWidth: 20)
-                .opacity(0.2)
-                .foregroundStyle(.accent)
-            Text(percentText)
-                .foregroundStyle(.chartText)
-            Circle()
-                .trim(from: 0.0, to: todaysProgress)
-                .stroke(style: StrokeStyle(lineWidth: 10, lineCap: .round))
-                .foregroundStyle(.chartText)
-                .rotationEffect(.degrees(-90))
-                .animation(.easeOut(duration: 0.5), value: todaysProgress)
-        }
-        .frame(height: 100)
-        .padding(.vertical, 40)
-        .preferredColorScheme(colorScheme)
     }
 }
 
