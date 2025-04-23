@@ -1,5 +1,5 @@
 //
-//  MainContentView.swift
+//  MainContent.swift
 //  Trackli
 //
 //  Created by Natalia Nikiforuk on 23/04/2025.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MainContentView: View {
+struct MainContent: View {
     @Binding var currentPage: Int
     @Binding var selectedDate: Date
     
@@ -19,11 +19,11 @@ struct MainContentView: View {
     
     var body: some View {
         VStack {
-            CalendarView(currentPage: $currentPage, selectedDate: $selectedDate, isIPad: isIPad)
+            CalendarTab(currentPage: $currentPage, selectedDate: $selectedDate, isIPad: isIPad)
             if todaysHabits.isEmpty {
                 NoChart()
             } else {
-                ChartView(todaysHabits: todaysHabits, colorScheme: colorScheme)
+                Chart(todaysHabits: todaysHabits, colorScheme: colorScheme)
             }
             VStack {
                 HStack(alignment: .firstTextBaseline) {
@@ -52,7 +52,12 @@ struct MainContentView: View {
                     if todaysHabits.isEmpty {
                         NoNotes()
                     } else {
-                        Habits(todaysHabits: todaysHabits)
+                        ScrollView {
+                            ForEach(todaysHabits) { habit in
+                                SingleHabit(habit: habit)
+                            }
+                        }
+                        .padding(.horizontal, 20)
                     }
                     Spacer()
                 }

@@ -1,5 +1,5 @@
 //
-//  WeekView.swift
+//  Week.swift
 //  Havit
 //
 //  Created by Natalia Nikiforuk on 19/03/2025.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct WeekView: View {
+struct Week: View {
     @Binding var selectedDate: Date
     let weekNumber: Int
     let today = Date()
@@ -96,5 +96,5 @@ struct WeekView: View {
 }
 
 #Preview {
-    WeekView(selectedDate: .constant(Date()), weekNumber: 0, isIPad: false)
+    Week(selectedDate: .constant(Date()), weekNumber: 0, isIPad: false)
 }

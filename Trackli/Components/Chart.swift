@@ -1,5 +1,5 @@
 //
-//  ChartView.swift
+//  Chart.swift
 //  Trackli
 //
 //  Created by Natalia Nikiforuk on 23/04/2025.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ChartView: View {
+struct Chart: View {
     var todaysHabits: [Habit]
     
     var todaysProgress: CGFloat {

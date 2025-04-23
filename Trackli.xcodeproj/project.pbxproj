@@ -72,7 +72,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				"/Localized: Resources/Localizable.strings",
-				Persistence.swift,
+				Helpers/Persistence.swift,
 				Trackli.xcdatamodeld,
 			);
 			target = F516CA032DA6B1DA00698F9E /* CustomWidgetExtension */;

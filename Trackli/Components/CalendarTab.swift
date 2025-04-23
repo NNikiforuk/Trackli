@@ -1,5 +1,5 @@
 //
-//  CalendarView.swift
+//  CalendarTab.swift
 //  Trackli
 //
 //  Created by Natalia Nikiforuk on 23/04/2025.
@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct CalendarView: View {
+struct CalendarTab: View {
     @Binding var currentPage: Int
     @Binding var selectedDate: Date
     @State private var weekRange: ClosedRange<Int> = -50...50
@@ -23,7 +23,7 @@ struct CalendarView: View {
                 .padding(.top, 20)
             TabView(selection: $currentPage) {
                 ForEach(weekRange, id: \.self) { weekNumber in
-                    WeekView(
+                    Week(
                         selectedDate: $selectedDate,
                         weekNumber: weekNumber,
                         isIPad: isIPad

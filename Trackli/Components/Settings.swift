@@ -1,5 +1,5 @@
 //
-//  SettingsView.swift
+//  Settings.swift
 //  Havit
 //
 //  Created by Natalia Nikiforuk on 27/03/2025.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SettingsView: View {
+struct Settings: View {
     var colorScheme: ColorScheme?
     let isIPad: Bool
     
@@ -71,5 +71,5 @@ extension View {
 }
 
 #Preview {
-    SettingsView(colorScheme: .light, isIPad: false)
+    Settings(colorScheme: .light, isIPad: false)
 }

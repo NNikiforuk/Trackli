@@ -65,7 +65,7 @@ struct HomeView: View {
                     Spacer()
                     deleteBtn
                 }
-                MainContentView(currentPage: $currentPage, selectedDate: $selectedDate, isIPad: isIPad, todaysHabits: todaysHabits, colorScheme: colorScheme)
+                MainContent(currentPage: $currentPage, selectedDate: $selectedDate, isIPad: isIPad, todaysHabits: todaysHabits, colorScheme: colorScheme)
             }
             .generalStylingModifier()
             .alert(LocalizedStringKey(alertTitle), isPresented: $showAlert) {
@@ -74,11 +74,11 @@ struct HomeView: View {
             .preferredColorScheme(colorScheme)
         } else {
             NavigationView {
-                MainContentView(currentPage: $currentPage, selectedDate: $selectedDate, isIPad: isIPad, todaysHabits: todaysHabits, colorScheme: colorScheme)
+                MainContent(currentPage: $currentPage, selectedDate: $selectedDate, isIPad: isIPad, todaysHabits: todaysHabits, colorScheme: colorScheme)
                     .generalStylingModifier()
                     .toolbar {
                         ToolbarItem(placement: .topBarLeading) {
-                            NavigationLink(destination: SettingsView(colorScheme: colorScheme, isIPad: isIPad)) {
+                            NavigationLink(destination: Settings(colorScheme: colorScheme, isIPad: isIPad)) {
                                 Image(systemName: "gearshape")
                                     .font(.body.bold())
                             }
