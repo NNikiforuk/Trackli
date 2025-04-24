@@ -16,6 +16,7 @@ struct MainContent: View {
     let colorScheme: ColorScheme?
     
     @State private var isAdding = false
+    @State private var refreshTrigger = false
     
     var body: some View {
         VStack {
@@ -23,7 +24,7 @@ struct MainContent: View {
             if todaysHabits.isEmpty {
                 NoChart()
             } else {
-                Chart(todaysHabits: todaysHabits, colorScheme: colorScheme)
+                Chart(todaysHabits: todaysHabits, colorScheme: colorScheme, refreshTrigger: $refreshTrigger)
             }
             VStack {
                 HStack(alignment: .firstTextBaseline) {
@@ -54,7 +55,7 @@ struct MainContent: View {
                     } else {
                         ScrollView {
                             ForEach(todaysHabits) { habit in
-                                SingleHabit(habit: habit)
+                                SingleHabit(habit: habit, refreshTrigger: $refreshTrigger)
                             }
                         }
                         .padding(.horizontal, 20)

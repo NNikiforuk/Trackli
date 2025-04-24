@@ -22,6 +22,8 @@ struct Chart: View {
     }
     var colorScheme: ColorScheme?
     
+    @Binding var refreshTrigger: Bool
+    
     var body: some View {
         ZStack{
             Circle()
@@ -35,7 +37,7 @@ struct Chart: View {
                 .stroke(style: StrokeStyle(lineWidth: 10, lineCap: .round))
                 .foregroundStyle(.chartText)
                 .rotationEffect(.degrees(-90))
-                .animation(.easeOut(duration: 0.5), value: todaysProgress)
+                .animation(.easeOut(duration: 0.5), value: refreshTrigger)
         }
         .frame(height: 100)
         .padding(.vertical, 40)

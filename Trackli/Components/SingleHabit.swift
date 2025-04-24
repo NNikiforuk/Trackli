@@ -10,6 +10,7 @@ import WidgetKit
 
 struct SingleHabit: View {
     @ObservedObject var habit: Habit
+    @Binding var refreshTrigger: Bool
     
     var body: some View {
         HStack {
@@ -34,6 +35,7 @@ struct SingleHabit: View {
         .onTapGesture {
             habit.isCompleted.toggle()
             try? habit.managedObjectContext?.save()
+            refreshTrigger.toggle()
             WidgetCenter.shared.reloadAllTimelines()
         }
     }
