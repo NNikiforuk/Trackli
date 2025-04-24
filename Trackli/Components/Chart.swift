@@ -11,7 +11,10 @@ struct Chart: View {
     var todaysHabits: [Habit]
     
     var todaysProgress: CGFloat {
-        calculateTodaysProgress(todaysHabits: todaysHabits)
+        let todaysHabitsQty = CGFloat(todaysHabits.count)
+        let todaysHabitsCompleted = CGFloat(todaysHabits.filter{$0.isCompleted}.count)
+        
+        return todaysHabitsCompleted / todaysHabitsQty
     }
     
     var percentText: String {
