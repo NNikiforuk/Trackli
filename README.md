@@ -6,8 +6,8 @@
 </h4>
   <br>
   <h4 align="center">
-   <img src="https://github.com/user-attachments/assets/5546bb0c-9fd7-4c72-a6ec-7f0dfa44f786" width="250" h="auto"/>
-     <img src="https://github.com/user-attachments/assets/97928906-1764-4f31-b292-72d59ed8947e" width="250" h="auto"/>
+   <img src="https://github.com/user-attachments/assets/5546bb0c-9fd7-4c72-a6ec-7f0dfa44f786" width="350" h="auto"/>
+     <img src="https://github.com/user-attachments/assets/97928906-1764-4f31-b292-72d59ed8947e" width="350" h="auto"/>
     </h4>
 </h1>
  
