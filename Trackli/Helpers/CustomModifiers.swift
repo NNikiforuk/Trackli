@@ -6,7 +6,7 @@
 //
 //
 
-import SwiftUICore
+import SwiftUI
 
 struct ElementModifier: ViewModifier {
     func body(content: Content) -> some View {

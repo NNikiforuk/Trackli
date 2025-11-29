@@ -117,13 +117,13 @@ struct CustomWidgetEntryView : View {
     var content: some View {
         VStack {
             if habitsCount == 0 {
-                Text(LocalizedStringKey("Good job!"))
+                Text("Good job!")
                     .font(.body.bold())
                     .foregroundStyle(.noDataText)
             } else {
                 HStack {
                     VStack(alignment: .leading) {
-                        Text(LocalizedStringKey("Still unchecked"))
+                        Text("Still unchecked")
                             .font(.caption)
                             .foregroundColor(.secondary)
                             .padding(.bottom, 5)

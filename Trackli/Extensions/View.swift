@@ -5,7 +5,7 @@
 //  Created by Natalia Nikiforuk on 07/04/2025.
 //
 
-import SwiftUICore
+import SwiftUI
 import UIKit
 
 extension View {

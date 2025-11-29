@@ -11,7 +11,7 @@ import WidgetKit
 
 struct HomeView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    @AppStorage("appearance") private var selectedAppearance: Appearance = .system
+    @AppStorage("appearance") private var selectedAppearance: Appearance = .light
     @Namespace private var animation
     
     @FetchRequest(
@@ -22,17 +22,6 @@ struct HomeView: View {
     @State private var selectedDate = Date()
     @State private var currentPage = 0
     @State private var showAlert = false
-    
-    var colorScheme: ColorScheme? {
-        switch selectedAppearance {
-        case .system:
-            return nil
-        case .dark:
-            return .dark
-        case .light:
-            return .light
-        }
-    }
     
     var isNoData: Bool {
         habits.isEmpty
@@ -53,45 +42,38 @@ struct HomeView: View {
         }
     }
     
-    var isIPad: Bool {
-        UIDevice.current.userInterfaceIdiom == .pad
+    var body: some View {
+        NavigationView {
+            MainContent(currentPage: $currentPage, selectedDate: $selectedDate, todaysHabits: todaysHabits)
+                .generalStylingModifier()
+                .toolbar {
+                    ToolbarItem(placement: .topBarLeading) {
+                        if selectedAppearance == .light {
+                            appearanceBtn(icon: "moon", action: {
+                                selectedAppearance = .dark
+                            })
+                        } else {
+                            appearanceBtn(icon: "sun.max", action: {
+                                selectedAppearance = .light
+                            })
+                        }
+                    }
+                    ToolbarItem(placement: .topBarTrailing) {
+                        deleteBtn
+                    }
+                }
+                .alert(alertTitle, isPresented: $showAlert) {
+                    deletingAlert
+                }
+        }
+        .colorScheme(selectedAppearance == .dark ? .dark : .light)
     }
     
-    var body: some View {
-        if isIPad {
-            VStack {
-                HStack {
-                    SettingsPicker(isIPad: isIPad)
-                    Spacer()
-                    deleteBtn
-                }
-                MainContent(currentPage: $currentPage, selectedDate: $selectedDate, isIPad: isIPad, todaysHabits: todaysHabits, colorScheme: colorScheme)
-            }
-            .generalStylingModifier()
-            .alert(LocalizedStringKey(alertTitle), isPresented: $showAlert) {
-                deletingAlert
-            }
-            .preferredColorScheme(colorScheme)
-        } else {
-            NavigationView {
-                MainContent(currentPage: $currentPage, selectedDate: $selectedDate, isIPad: isIPad, todaysHabits: todaysHabits, colorScheme: colorScheme)
-                    .generalStylingModifier()
-                    .toolbar {
-                        ToolbarItem(placement: .topBarLeading) {
-                            NavigationLink(destination: Settings(colorScheme: colorScheme, isIPad: isIPad)) {
-                                Image(systemName: "gearshape")
-                                    .font(.body.bold())
-                            }
-                        }
-                        ToolbarItem(placement: .topBarTrailing) {
-                            deleteBtn
-                        }
-                    }
-                    .alert(LocalizedStringKey(alertTitle), isPresented: $showAlert) {
-                        deletingAlert
-                    }
-            }
-            .preferredColorScheme(colorScheme)
+    func appearanceBtn(icon: String, action: @escaping () -> Void) -> some View {
+        Button {
+            action()
+        } label: {
+            Image(systemName: icon)
         }
     }
     
@@ -100,10 +82,10 @@ struct HomeView: View {
             if isNoData {
                 Button("Ok", role: .cancel) { }
             } else {
-                Button(LocalizedStringKey("Yes"), role: .destructive) {
+                Button("Yes", role: .destructive) {
                     performDeleting()
                 }
-                Button(LocalizedStringKey("No"), role: .cancel) { }
+                Button("No", role: .cancel) { }
             }
         }
     }
@@ -112,7 +94,7 @@ struct HomeView: View {
         Button {
             showAlert.toggle()
         } label: {
-            Text(LocalizedStringKey("Delete all"))
+            Text("Delete all")
             Image(systemName: "trash")
         }
     }

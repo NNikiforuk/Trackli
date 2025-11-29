@@ -13,20 +13,17 @@ struct CalendarTab: View {
     @Binding var selectedDate: Date
     @State private var weekRange: ClosedRange<Int> = -50...50
     
-    let isIPad: Bool
-    
     var body: some View {
         VStack {
             Text(formatMonth(for: currentPage))
-                .font(isIPad ? .title.bold() : .title2.bold())
+                .font(.title2.bold())
                 .foregroundColor(.primaryText)
                 .padding(.top, 20)
             TabView(selection: $currentPage) {
                 ForEach(weekRange, id: \.self) { weekNumber in
                     Week(
                         selectedDate: $selectedDate,
-                        weekNumber: weekNumber,
-                        isIPad: isIPad
+                        weekNumber: weekNumber
                     )
                     .tag(weekNumber)
                 }

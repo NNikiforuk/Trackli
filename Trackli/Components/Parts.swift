@@ -8,18 +8,9 @@
 import Foundation
 import SwiftUI
 
-
-struct NoChart: View {
-    var body: some  View {
-        Text("")
-            .frame(height: 100)
-            .padding(.vertical, 40)
-    }
-}
-
 struct NoNotes: View {
     var body: some  View {
-        Text(LocalizedStringKey("No data"))
+        Text("No data")
             .padding(.top, 20)
             .foregroundStyle(.primaryText)
     }

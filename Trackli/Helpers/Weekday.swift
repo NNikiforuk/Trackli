@@ -12,10 +12,6 @@ enum Weekday: String, CaseIterable, Identifiable {
     
     var id: String { rawValue }
 
-    var localizedName: String {
-        NSLocalizedString(rawValue, comment: "")
-    }
-
     static func from(date: Date) -> Weekday? {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "en_US_POSIX")

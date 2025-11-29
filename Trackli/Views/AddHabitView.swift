@@ -63,7 +63,7 @@ struct AddHabitView: View {
                     }) {
                         HStack {
                             Image(systemName: "chevron.left")
-                            Text(LocalizedStringKey("Back"))
+                            Text("Back")
                         }
                         .foregroundColor(.accentColor)
                     }
@@ -79,7 +79,7 @@ struct AddHabitView: View {
                             save()
                         }
                     }) {
-                        Text(LocalizedStringKey("Save"))
+                        Text("Save")
                             .fontWeight(.bold)
                     }
                 }
@@ -89,7 +89,7 @@ struct AddHabitView: View {
     }
     
     var header: some View {
-        Text(LocalizedStringKey("Add new habit"))
+        Text("Add new habit")
             .font(.title2)
             .fontWeight(.bold)
             .padding(.top, 20)
@@ -104,7 +104,7 @@ struct AddHabitView: View {
     }
     
     var newHabitTextField: some View {
-        TextField(LocalizedStringKey("E.g. Flossing"), text: $newTitle)
+        TextField("E.g. Flossing", text: $newTitle)
             .autocorrectionDisabled()
             .elementModifier()
     }
@@ -119,27 +119,27 @@ struct AddHabitView: View {
     
     func validationError() -> String? {
         if normalizedStartDate > normalizedEndDate {
-            return NSLocalizedString("first_day_before_last_day", comment: "The first day must be on or before the last day")
+            return "The first day must be on or before the last day"
         }
         
         if newTitle.isEmpty {
-            return NSLocalizedString("title_not_empty", comment: "Title cannot be empty")
+            return "Title cannot be empty"
         }
         
         if selectedTogglesCount == 0 {
-            return NSLocalizedString("no_toggle", comment: "No toggle selected")
+            return "No toggle selected"
         }
         
         if selectedTogglesCount > 1 {
-            return NSLocalizedString("too_many_toggles", comment: "To many toggles selected")
+            return "To many toggles selected"
         }
         
         if weekdaysOptionSelected && selectedWeekdays.isEmpty {
-            return NSLocalizedString("select_specific_day", comment: "Select specific day")
+            return "Select specific day"
         }
         
         if weekdaysOptionSelected && !isHabitCreated {
-            return NSLocalizedString("no_weekday_found", comment: "No matching weekday(s) found in the given range")
+            return "No matching weekday(s) found in the given range"
         }
         
         return nil
@@ -258,9 +258,9 @@ struct HabitToggles: View {
     
     var everyXDaysToggleTitle: String {
         if xDaysOptionSelected {
-            return String(format: NSLocalizedString("every_x_days", comment: "Title for habit toggle when a specific number of days is selected"), xDays)
+            return String(format: "Title for habit toggle when a specific number of days is selected", xDays)
         } else {
-            return NSLocalizedString("every_x_days_default", comment: "Title for habit toggle when a default value is used")
+            return "Title for habit toggle when a default value is used"
         }
     }
     
@@ -290,7 +290,7 @@ struct HabitToggles: View {
                                 selectedWeekdays.insert(day)
                             }
                         }) {
-                            Text(day.localizedName)
+                            Text(day.rawValue)
                                 .font(.subheadline.bold())
                                 .frame(width: 44, height: 36)
                                 .background(selectedWeekdays.contains(day) ? .accent.opacity(0.4) : .customPrimary.opacity(0.5))
@@ -311,7 +311,7 @@ struct NewHabitToggle: View {
     
     var body: some View {
         Toggle(isOn: $selectedOption) {
-            Text(LocalizedStringKey(title))
+            Text(title)
                 .fontWeight(.bold)
         }
         .tint(.accent)
@@ -326,7 +326,7 @@ struct SectionSubheadline: View {
     let title: String
     
     var body: some View {
-        Text(LocalizedStringKey(title))
+        Text(title)
             .font(.subheadline)
             .foregroundColor(.secondary)
     }
